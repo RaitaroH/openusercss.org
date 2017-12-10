@@ -153,7 +153,9 @@
     "vueify-extract-css": "https://github.com/DecentM/vueify-extract-css",
     "walk": "^2.3.9",
     "watchify": "^3",
-    "windowify": "^0.3.0"
+    "windowify": "^0.3.0",
+    "workbox-build": "^2.1.2",
+    "workbox-sw": "^2.1.2"
   },
   "dependencies": {
     "animejs": "^2",

@@ -9,7 +9,8 @@ gulp.task('build:fast', gulp.series(
     'client:fast',
   ),
   'server:views',
-  'server:fast'
+  'server:fast',
+  'worker-manifest'
 ))
 
 gulp.task('build:prod', gulp.series(
@@ -21,5 +22,6 @@ gulp.task('build:prod', gulp.series(
     'client:prod',
   ),
   'server:views',
-  'server:prod'
+  'server:prod',
+  'worker-manifest'
 ))
