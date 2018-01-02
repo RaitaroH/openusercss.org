@@ -1,5 +1,4 @@
 import test from 'ava'
-import delay from 'delay'
 import {remote} from 'webdriverio'
 
 const client = remote({
@@ -53,43 +52,3 @@ test('basic-navigation', async (t) => {
 
   t.true(searchInput.includes('placeholder="Search themes and users"'))
 })
-
-/* module.exports = {
-  'Begin' (client) {
-    client
-    .resizeWindow(1280, 720)
-    .url(client.launchUrl)
-    .waitForElementVisible('.ouc-app-root', 1000)
-  },
-
-  'Footer contains correct text' (client) {
-    client
-    .assert.containsText('.footer', 'Copyright ©')
-    .assert.containsText('.footer', new Date().getFullYear())
-    .assert.containsText('.footer', 'Contact the administrator')
-  },
-
-  'Navbar contains correct text' (client) {
-    client
-    .assert.containsText('.navbar-brand', 'OpenUserCSS')
-    .assert.containsText('.navbar-brand a[href="/"]', 'OpenUserCSS')
-    .assert.containsText('.navbar-brand', 'Alpha!')
-  },
-
-  'Navbar navigation works' (client) {
-    client
-    .click('a[href="/login"].navbar-item')
-    .assert.urlEquals('http://localhost:5010/login')
-    .waitForElementVisible('.ouc-login-form', 1000)
-    .assert.containsText('.ouc-form-section', 'Log in to OpenUserCSS')
-
-    .click('a[href="/register"].navbar-item')
-    .assert.urlEquals('http://localhost:5010/register')
-    .waitForElementVisible('.ouc-register-form', 1000)
-    .assert.containsText('.ouc-form-section', 'Create your OpenUserCSS account')
-  },
-
-  'Close Selenium session' (client) {
-    client.end()
-  }
-} */
