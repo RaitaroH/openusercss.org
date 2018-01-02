@@ -8,7 +8,7 @@ const client = remote({
 })
 
 test.before(async (t) => {
-  await client.init()
+  return client.init()
   .setViewportSize({
     'width':  1280,
     'height': 720
@@ -18,10 +18,10 @@ test.before(async (t) => {
 })
 
 test.after.always(async (t) => {
-  await client.end()
+  return client.end()
 })
 
-test('footer contains correct text', async (t) => {
+test.serial('footer contains correct text', async (t) => {
   await client.waitForVisible('.footer')
   const footerContent = await client.getText('.footer')
 

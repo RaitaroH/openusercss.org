@@ -8,7 +8,7 @@ const client = remote({
 })
 
 test.before(async (t) => {
-  await client.init()
+  return client.init()
   .setViewportSize({
     'width':  1280,
     'height': 720
@@ -18,13 +18,10 @@ test.before(async (t) => {
 })
 
 test.after.always(async (t) => {
-  await client.end()
+  return client.end()
 })
 
-test('basic-navigation', async (t) => {
-  await client.waitForVisible('.navbar')
-
-  // /login
+test.serial('visits /login', async (t) => {
   await client.click('.navbar a[href="/login"]')
   t.true(await client.getUrl() === 'http://localhost:5010/login')
   await client.waitForVisible('.ouc-login-form')
@@ -33,8 +30,9 @@ test('basic-navigation', async (t) => {
 
   t.true(loginForm.includes('Log in to OpenUserCSS'))
   t.true(loginButton.includes('Login'))
+})
 
-  // /register
+test.serial('visits /register', async (t) => {
   await client.click('.navbar a[href="/register"]')
   t.true(await client.getUrl() === 'http://localhost:5010/register')
   await client.waitForVisible('.ouc-register-form')
@@ -43,8 +41,9 @@ test('basic-navigation', async (t) => {
 
   t.true(registerForm.includes('Create your OpenUserCSS account'))
   t.true(registerButton.includes('Register'))
+})
 
-  // /search
+test.serial('visits /search', async (t) => {
   await client.click('.navbar a[href="/search"]')
   t.true(await client.getUrl() === 'http://localhost:5010/search')
   await client.waitForVisible('input[name="search"]')
