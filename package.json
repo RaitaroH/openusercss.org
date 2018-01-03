@@ -26,9 +26,9 @@
     "buildpush": "npm run prod && docker build . -t decentm/openusercss && docker push decentm/openusercss",
     "release": "git stash -u && npm run buildpush; git stash apply",
     "release:test": "npm run fast && docker build . -t decentm/openusercss",
-    "test:dirty": "concurrently --kill-others 'ava' 'env-cmd ./.dev.env node build/manager'",
-    "watch:test": "npm run selenium:update && nodemon --delay 0.25 --watch package.json --watch test -x 'npm run selenium:start && npm run test:dirty; npm run selenium:stop'",
-    "test": "npm run selenium:update && npm run selenium:start && npm run test:dirty; npm run selenium:stop",
+    "test": "concurrently --raw --kill-others 'npm start' 'npm run selenium:update && npm run selenium:start && ava; npm run selenium:stop'",
+    "watch:test:dirty": "nodemon -q --delay 0.25 --watch package.json --watch test -x 'npm run selenium:start && ava; npm run selenium:stop'",
+    "watch:test": "concurrently --raw --kill-others 'npm start' 'npm run selenium:update && npm run watch:test:dirty'",
     "commit": "git-cz"
   },
   "author": "DecentM",

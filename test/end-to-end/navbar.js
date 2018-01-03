@@ -21,6 +21,16 @@ test.after.always(async (t) => {
   return client.end()
 })
 
+test.serial('contains items text', async (t) => {
+  const navbar = await client.getText('.navbar')
+
+  t.true(navbar.includes('Home'))
+  t.true(navbar.includes('Log in'))
+  t.true(navbar.includes('Register'))
+  t.true(navbar.includes('Search'))
+  t.true(navbar.includes('Forums'))
+})
+
 test.serial('visits /login', async (t) => {
   await client.click('.navbar a[href="/login"]')
   t.true(await client.getUrl() === 'http://localhost:5010/login')
@@ -50,4 +60,10 @@ test.serial('visits /search', async (t) => {
   const searchInput = await client.getHTML('input[name="search"]')
 
   t.true(searchInput.includes('placeholder="Search themes and users"'))
+})
+
+test.serial('goes to forums', async (t) => {
+  await client.click('.navbar a[href="//forums.openusercss.org"]')
+  await client.waitForVisible('[itemtype="http://www.schema.org/ItemList"]')
+  t.true(await client.getUrl() === 'https://forums.openusercss.org/')
 })

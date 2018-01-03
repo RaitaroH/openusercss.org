@@ -1,6 +1,6 @@
+import hat from 'hat'
 import test from 'ava'
 import {remote} from 'webdriverio'
-import hat from 'hat'
 
 const client = remote({
   'desiredCapabilities': {
@@ -16,6 +16,10 @@ test.before(async (t) => {
   })
   .url('http://localhost:5010/search')
   .waitForVisible('.ouc-app-root')
+})
+
+test.after.always(async (t) => {
+  return client.end()
 })
 
 test.after.always(async (t) => {
