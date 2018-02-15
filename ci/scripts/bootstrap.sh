@@ -1,5 +1,7 @@
 #!/bin/echo This file must be sourced:
 set -ex
+
+echo $EVIL
 export PATH=$PATH":repo/node_modules/.bin:node_modules/.bin"
 export BOOTSTRAP=true
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=true

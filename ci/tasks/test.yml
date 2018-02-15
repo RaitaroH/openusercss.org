@@ -25,3 +25,4 @@ params:
   CI: true
   COVERALLS_SERVICE_NAME: DecentM's Concourse
   COVERALLS_REPO_TOKEN: ((coverallsToken))
+  EVIL: ((githubUsername))
