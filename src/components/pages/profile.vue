@@ -144,7 +144,7 @@
                 hr
 
               .columns.is-multiline
-                .column.is-6(v-for="(theme, index) in themes")
+                .column.is-6(v-for="(theme, index) in orderBy(themes, 'name')")
                   theme-card(:data-index="index", :small="true", direction="horizontal", card-class="is-primary", :theme-id="theme._id").has-bottom-margin
                     .tile.is-parent(slot="content")
                       .columns
